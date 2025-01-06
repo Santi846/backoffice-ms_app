@@ -12,7 +12,7 @@ const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: ["src/entity/*.js"], // Cambia según tu estructura
+    entities: ["src/entity/*.ts"], // Cambia según tu estructura
     synchronize: true,
     logging: true,
   });

@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class User extends BaseEntity {
+export class Product {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -13,4 +13,4 @@ export class User extends BaseEntity {
 
     @Column({default:0})
     likes: number
-}
+}   
