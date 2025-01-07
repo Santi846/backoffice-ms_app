@@ -13,7 +13,7 @@ exports.initialitationApp = connection_1.AppDataSource.initialize()
     app.use(cors({
         origin: ["http://localhost:3000"],
     }));
-    app.use('/api', routes_1.default);
+    app.use('/api/', routes_1.default);
     var PORT = process.env.PORT || 5000;
     app.listen(PORT, function () {
         console.log("Server is running on port ".concat(PORT));

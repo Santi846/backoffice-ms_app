@@ -48,6 +48,8 @@ router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 0: return [4 /*yield*/, connection_1.AppDataSource.getRepository(product_1.Product).find()];
             case 1:
                 products = _a.sent();
+                if (!products)
+                    res.status(400).json({ message: "No se encontraron productos" });
                 res.json(products);
                 return [2 /*return*/];
         }

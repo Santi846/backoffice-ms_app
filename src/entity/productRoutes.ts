@@ -7,6 +7,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     const products = await AppDataSource.getRepository(Product).find();
+    if (!products) res.status(400).json({message:"No se encontraron productos"});
     res.json(products);
 });
 

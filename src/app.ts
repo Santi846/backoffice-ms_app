@@ -18,7 +18,7 @@ export const initialitationApp = AppDataSource.initialize()
       
     );
 
-    app.use('/api', routes);
+    app.use('/api/', routes);
 
     const PORT = process.env.PORT || 5000;
 
