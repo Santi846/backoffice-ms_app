@@ -1,31 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.initialitationApp = void 0;
 var express = require("express");
 var cors = require("cors");
-var typeorm_1 = require("typeorm");
-var dotenv = require("dotenv");
-dotenv.config();
-var AppDataSource = new typeorm_1.DataSource({
-    type: (process.env.DB_TYPE || "mysql"), // TypeORM espera un string específico aquí
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || "3306", 10),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    entities: ["src/entity/*.ts"], // Cambia según tu estructura
-    synchronize: true,
-    logging: true,
-});
+var routes_1 = require("./routes");
+var connection_1 = require("./connection");
 // Inicializar conexión y servidor Express
-AppDataSource.initialize()
+exports.initialitationApp = connection_1.AppDataSource.initialize()
     .then(function () {
     console.log("Database connected successfully");
     var app = express();
     app.use(cors({
         origin: ["http://localhost:3000"],
     }));
-    app.listen(8000, function () {
-        console.log("Server is running on port 8000");
+    app.use('/api', routes_1.default);
+    var PORT = process.env.PORT || 5000;
+    app.listen(PORT, function () {
+        console.log("Server is running on port ".concat(PORT));
     });
 })
     .catch(function (error) {
